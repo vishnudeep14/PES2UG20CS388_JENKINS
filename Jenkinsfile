@@ -1,29 +1,27 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'make build pes2ug20cs388'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'make test pes2ug20cs388'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'make deploy pes2ug20cs388'
-            }
-        }
-    }
-
-    post {
-        failure {
-            echo 'pipeline failed'
-        }
-    }
+ agent any
+ stages {
+ stage('Build') {
+ steps {
+ sh 'g++ -o PES2UG20CS388-1 ./main/hello.cpp'
+ echo 'BuildiNG it successful'
+ }
+ }
+ stage('Test') {
+ steps {
+ sh './PES2UG20CS388-1'
+ echo 'Testing  it successful'
+ }
+ }
+ stage('Deploy') {
+ steps {
+ echo 'Deploying it successful'
+ }
+ }
+ }
+ post {
+ failure {
+ echo 'Pipeline has failed'
+ }
+ }
 }
